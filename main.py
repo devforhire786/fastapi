@@ -51,7 +51,7 @@ class RoomPreferences(BaseModel):
     ai_enabled: bool = True
     auto_brightness: bool = True
     preferred_brightness: int = Field(default=80, ge=0, le=100)
-    motion_sensitivity: str = Field(default="MEDIUM", regex="^(LOW|MEDIUM|HIGH)$")
+    motion_sensitivity: str = Field(default="MEDIUM", pattern="^(LOW|MEDIUM|HIGH)$")
     time_ranges: List[dict] = Field(default_factory=list)
 
 class RoomCreate(BaseModel):
@@ -73,9 +73,9 @@ class Room(BaseModel):
     updated_at: datetime.datetime
 
 class LightStatus(BaseModel):
-    status: str = Field(regex="^(ON|OFF)$")
+    status: str = Field(pattern="^(ON|OFF)$")
     brightness: int = Field(ge=0, le=100)
-    source: str = Field(regex="^(MANUAL|AI|SCHEDULE)$")
+    source: str = Field(pattern="^(MANUAL|AI|SCHEDULE)$")
 
 # --- API Endpoints ---
 
